@@ -5,7 +5,5 @@ target 'BUStarView_Example' do
 
   target 'BUStarView_Tests' do
     inherit! :search_paths
-
-    
   end
 end

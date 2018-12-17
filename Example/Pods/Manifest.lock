@@ -1,0 +1,16 @@
+PODS:
+  - BUStarView (0.1.0)
+
+DEPENDENCIES:
+  - BUStarView (from `../`)
+
+EXTERNAL SOURCES:
+  BUStarView:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  BUStarView: 4bc4d86f688bf09d25d33c52c59afd8a9be2a71d
+
+PODFILE CHECKSUM: 1841f5fae7436d2d6cdd3b671db249398f2693af
+
+COCOAPODS: 1.5.3

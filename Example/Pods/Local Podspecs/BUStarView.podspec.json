@@ -1,0 +1,22 @@
+{
+  "name": "BUStarView",
+  "version": "0.1.0",
+  "summary": "A short description of BUStarView.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/vvlkv/BUStarView",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "vvlkv": "vvlkv@icloud.com"
+  },
+  "source": {
+    "git": "https://github.com/vvlkv/BUStarView.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "BUStarView/Classes/**/*"
+}
