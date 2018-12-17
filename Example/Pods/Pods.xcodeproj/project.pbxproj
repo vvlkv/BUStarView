@@ -10,6 +10,7 @@
 		0D3FD7F635F3097F8F5AEBC40728C65A /* Pods-BUStarView_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B4A40EE4512FA895727E157D063B6DA0 /* Pods-BUStarView_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		24EA2426C15B6D12FCD8D35428151FCF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		48F0F6DAC312AE11B55BC0B56E486E79 /* BUStarView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B41289A00A3C5E50E65159CF4E9D2456 /* BUStarView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5594D00521C81D1200EC01BA /* BUStarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5594D00421C81D1200EC01BA /* BUStarView.swift */; };
 		8446317694D80C02B96C4804D8412CC9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		8A798F333295CA15C7F3C21246A9A79F /* Pods-BUStarView_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B25579E2B58BC39675CFA453238453FA /* Pods-BUStarView_Example-dummy.m */; };
 		9AFCCAC144F61590BC0C53B110671EDE /* Pods-BUStarView_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CFD39377695ECD009C2EF9C036A77D /* Pods-BUStarView_Tests-dummy.m */; };
@@ -45,6 +46,7 @@
 		456F6FFDBF210C307F2923D9055F4AF6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48F129B9938EB171BDD5D57C3E72BDE5 /* Pods-BUStarView_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BUStarView_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		54CFD39377695ECD009C2EF9C036A77D /* Pods-BUStarView_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BUStarView_Tests-dummy.m"; sourceTree = "<group>"; };
+		5594D00421C81D1200EC01BA /* BUStarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BUStarView.swift; path = BUStarView/Classes/BUStarView.swift; sourceTree = "<group>"; };
 		5680BEBC87D98F5301710835947D74DF /* Pods-BUStarView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BUStarView_Example.release.xcconfig"; sourceTree = "<group>"; };
 		569D819251B028DBD7C2087E9B4852E1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -173,6 +175,7 @@
 		9827D7827BC444C5348DC5993CB25EB7 /* BUStarView */ = {
 			isa = PBXGroup;
 			children = (
+				5594D00421C81D1200EC01BA /* BUStarView.swift */,
 				F2201F6A27737B96E619AD4F90FC960C /* Pod */,
 				3118363E10E3CA56543A816C410AD32D /* Support Files */,
 			);
@@ -314,7 +317,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1010;
+				TargetAttributes = {
+					AA5B5371E588657256EB117BAC44CA04 = {
+						LastSwiftMigration = 1010;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -341,6 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBBA3AE8CECC64917F3A09B42B71616F /* BUStarView-dummy.m in Sources */,
+				5594D00521C81D1200EC01BA /* BUStarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +426,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 069CEC87C042842BDE5D672BD903BB9D /* BUStarView.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -665,6 +675,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
@@ -673,6 +684,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 069CEC87C042842BDE5D672BD903BB9D /* BUStarView.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";

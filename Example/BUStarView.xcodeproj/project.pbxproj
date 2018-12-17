@@ -212,10 +212,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = A7HQ3AATVX;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = A7HQ3AATVX;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -473,6 +475,7 @@
 			baseConfigurationReference = CDDE210073E7F74BED4FE87D /* Pods-BUStarView_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = A7HQ3AATVX;
 				INFOPLIST_FILE = BUStarView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -488,6 +491,7 @@
 			baseConfigurationReference = 8304CBDF98BA16F18EF933B6 /* Pods-BUStarView_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = A7HQ3AATVX;
 				INFOPLIST_FILE = BUStarView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -502,6 +506,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 069C65A7D534D35D5FC0376E /* Pods-BUStarView_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = A7HQ3AATVX;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -524,6 +529,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0ED26FABC5C23F664C0B3922 /* Pods-BUStarView_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = A7HQ3AATVX;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
