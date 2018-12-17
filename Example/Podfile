@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'BUStarView_Example' do
+  pod 'BUStarView', :path => '../'
+
+  target 'BUStarView_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
