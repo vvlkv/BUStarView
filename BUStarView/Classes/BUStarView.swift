@@ -12,11 +12,8 @@ public class BUStarView: UIView {
     
     @IBInspectable public var vertices: Int = 5 {
         didSet {
-            if (vertices % 2 == 0) {
-                vertices += 1
-            }
-            if (vertices > 9) {
-                vertices = 9
+            if vertices < 3 {
+                vertices = oldValue
             }
             setNeedsDisplay()
         }
@@ -31,7 +28,7 @@ public class BUStarView: UIView {
     }
     @IBInspectable public var innerRadius: CGFloat = 0.5 {
         didSet {
-            if (!(0.2..<outerRadius).contains(innerRadius)) {
+            if (!(0.1..<outerRadius).contains(innerRadius)) {
                 innerRadius = oldValue
             }
             setNeedsDisplay()
@@ -63,51 +60,30 @@ public class BUStarView: UIView {
         }
     }
     
-    private enum Radius {
-        case inner, outer
+    private var radius: CGFloat {
+        return min(frame.size.width/2, frame.size.height/2)
     }
     
     override public func draw(_ rect: CGRect) {
         super.draw(rect)
-        let ctx = UIGraphicsGetCurrentContext()
-        ctx?.clear(rect)
-        let radius = min(rect.width/2, rect.height/2)
         let center = CGPoint(x: rect.width/2, y: rect.height/2)
-        let outerPoints = getStarPoints(count: vertices, center: center, radius: radius * outerRadius, type: .outer);
-        let innerPoints = getStarPoints(count: vertices, center: center, radius: radius * innerRadius, type: .inner);
-        connectPoints(innerPoints: innerPoints, outerPoints: outerPoints)
+        let points = getPoints(count: vertices, center: center)
+        connectPoints(points: points)
     }
     
-    private func connectPoints(innerPoints: [CGPoint], outerPoints: [CGPoint]) {
-        var allPoints = [CGPoint]()
-        for (i, point) in outerPoints.enumerated() {
-            var sorted = innerPoints.sorted(by: { (f, s) -> Bool in
-                return distance(f, point) < distance(s, point)
-            })
-            if (i == 0) {
-                let point = sorted[0].x > sorted[1].x ? sorted[0] : sorted[1]
-                allPoints.append(point)
-            }
-            allPoints.append(point)
-            if !allPoints.contains(sorted[1]) {
-                allPoints.append(sorted[1])
-            } else if !allPoints.contains(sorted[0]) {
-                allPoints.append(sorted[0])
-            }
-        }
-        
+    private func connectPoints(points: [CGPoint]) {
         let ctx = UIGraphicsGetCurrentContext()
-        let middlePoint = CGPoint(x: 0.5 * (allPoints[0].x + allPoints.last!.x),
-                                  y: 0.5 * (allPoints[0].y + allPoints.last!.y))
+        let middlePoint = middle(point1: points[0], point2: points.last!)
         ctx?.move(to: middlePoint)
-        for i in 0..<allPoints.count {
-            let firstPoint = allPoints[i]
+        ctx?.setLineWidth(1.0)
+        for i in 0..<points.count {
+            let firstPoint = points[i]
             let secondPoint: CGPoint
-            let radius = i % 2 == 0 ? innerRound : outerRound
-            if i + 1 >= allPoints.count {
-                secondPoint = allPoints[0]
+            let radius = i % 2 == 0 ? outerRound : innerRound
+            if i + 1 >= points.count {
+                secondPoint = points[0]
             } else {
-                secondPoint = allPoints[i + 1]
+                secondPoint = points[i + 1]
             }
             ctx?.addArc(tangent1End: firstPoint,
                         tangent2End: secondPoint,
@@ -122,21 +98,55 @@ public class BUStarView: UIView {
         ctx?.strokePath()
     }
     
-    func distance(_ a: CGPoint, _ b: CGPoint) -> CGFloat {
-        let xDist = a.x - b.x
-        let yDist = a.y - b.y
-        return CGFloat(sqrt(xDist * xDist + yDist * yDist))
+    private func getPoints(count: Int, center: CGPoint) -> [CGPoint] {
+        let pi: CGFloat = CGFloat.pi
+        let step: CGFloat = 2 * pi / CGFloat(count)
+        var points = [CGPoint]()
+        let outerOffset: CGFloat = pi / 2
+        let innerOffset: CGFloat = outerOffset + pi / CGFloat(vertices)
+        for i in 0..<count {
+            let outerPoint = getPoint(piVal: step * CGFloat(i) + outerOffset,
+                                      center: center, radius: radius * outerRadius)
+            points.append(outerPoint)
+            let innerPoint = getPoint(piVal: step * CGFloat(i) + innerOffset,
+                                      center: center, radius: radius * innerRadius)
+            points.append(innerPoint)
+        }
+
+//        let point1 = middle(point1: points[1], point2: points[3])
+//        let distance = sqrt(pow(Double(point1.x) - Double(points[1].x), 2.0) + pow(Double(point1.y) - Double(points[1].y), 2))
+//        print(distance)
+//        let point1 = points[1]
+//        let point2 = points[2]
+//        let point3 = points[3]
+//        let a = length(point1: point1, point2: point2)
+//        let b = length(point1: point2, point2: point3)
+//        let c = length(point1: point1, point2: point3)
+//        let perimeter = (a + b + c) / 2.0
+//        let r = sqrt((perimeter - a) * (perimeter - b) * (perimeter - c)/perimeter)
+//        print(r)
+//        let path = UIBezierPath()
+//        path.move(to: point1)
+//        path.addLine(to: point3)
+//        path.stroke()
+        
+//        let point1 = middle(point1: points[0], point2: points[1])
+//        let point2 = middle(point1: points[1], point2: points[2])
+//
+//
+//        print(getRadius(piAngle: step / 2, hypotenuse: CGFloat(distance)))
+//        let point3 = middle(point1: points[1], point2: points[2])
+//        let point4 = middle(point1: points[2], point2: points[3])
+//        let distance2 = sqrt(pow(Double(point3.x) - Double(point4.x), 2.0) + pow(Double(point3.y) - Double(point4.y), 2))
+//        print(getRadius(piAngle: step / 2, hypotenuse: CGFloat(distance2)))
+
+//        path.move(to: point3)
+//        path.addLine(to: point4)
+        return points
     }
     
-    private func getStarPoints(count: Int, center: CGPoint, radius: CGFloat, type: Radius) -> [CGPoint] {
-        let step = 360 / count
-        var points = [CGPoint]()
-        let multiplier: CGFloat = type == .inner ? -1 : 1;
-        for i in 0..<count {
-            let point = getPoint(piVal: toRad(val: CGFloat(step * i) + 90 * multiplier), center: center, radius: radius)
-            points.append(point)
-        }
-        return points
+    private func getRadius(piAngle: CGFloat, hypotenuse: CGFloat) -> CGFloat {
+        return hypotenuse * tan(piAngle)
     }
     
     private func getPoint(piVal: CGFloat, center: CGPoint, radius: CGFloat) -> CGPoint {
@@ -146,7 +156,12 @@ public class BUStarView: UIView {
         return point
     }
     
-    private func toRad(val: CGFloat) -> CGFloat {
-        return val * CGFloat.pi / 180
+    private func middle(point1: CGPoint, point2: CGPoint) -> CGPoint {
+        return CGPoint(x: 0.5 * (point1.x + point2.x),
+                       y: 0.5 * (point1.y + point2.y))
+    }
+    
+    private func length(point1: CGPoint, point2: CGPoint) -> Double {
+        return sqrt(pow(Double(point1.x) - Double(point2.x), 2.0) + pow(Double(point1.y) - Double(point2.y), 2))
     }
 }

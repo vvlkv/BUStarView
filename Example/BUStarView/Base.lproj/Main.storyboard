@@ -27,6 +27,17 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="TSh-az-wLF" secondAttribute="height" multiplier="1:1" id="Yac-ba-RTF"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="innerRound">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="vertices">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="outerRound">
+                                        <real key="value" value="14"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="dSJ-CZ-epw">
                                 <rect key="frame" x="16" y="259" width="343" height="408"/>
@@ -40,7 +51,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="5" maxValue="9" translatesAutoresizingMaskIntoConstraints="NO" id="Cuv-OD-UgE">
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="5" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="Cuv-OD-UgE">
                                                 <rect key="frame" x="169.5" y="6" width="175.5" height="31"/>
                                                 <connections>
                                                     <action selector="outerRadius:" destination="vXZ-lx-hvc" eventType="valueChanged" id="qI4-sE-sJH"/>
@@ -199,7 +210,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="TSh-az-wLF" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="16" id="0hH-Lm-Jkl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="TSh-az-wLF" secondAttribute="trailing" constant="64" id="1nR-CA-Bjs"/>
