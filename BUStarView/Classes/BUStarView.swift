@@ -36,11 +36,19 @@ public class BUStarView: UIView {
     }
     @IBInspectable public var outerRound:  CGFloat = 5.0 {
         didSet {
+            
+            if (outerRound > maxOuterRound) {
+                outerRound = oldValue
+            }
             setNeedsDisplay()
         }
     }
     @IBInspectable public var innerRound:  CGFloat = 5.0 {
         didSet {
+//            print(maxInnerRound, innerRound)
+            if (innerRound > maxInnerRound) {
+                innerRound = oldValue
+            }
             setNeedsDisplay()
         }
     }
@@ -59,6 +67,9 @@ public class BUStarView: UIView {
             setNeedsDisplay()
         }
     }
+    
+    private var maxOuterRound: CGFloat = CGFloat.greatestFiniteMagnitude
+    private var maxInnerRound: CGFloat = CGFloat.greatestFiniteMagnitude
     
     private var radius: CGFloat {
         return min(frame.size.width/2, frame.size.height/2)
@@ -112,37 +123,21 @@ public class BUStarView: UIView {
                                       center: center, radius: radius * innerRadius)
             points.append(innerPoint)
         }
-
-//        let point1 = middle(point1: points[1], point2: points[3])
-//        let distance = sqrt(pow(Double(point1.x) - Double(points[1].x), 2.0) + pow(Double(point1.y) - Double(points[1].y), 2))
-//        print(distance)
-//        let point1 = points[1]
-//        let point2 = points[2]
-//        let point3 = points[3]
-//        let a = length(point1: point1, point2: point2)
-//        let b = length(point1: point2, point2: point3)
-//        let c = length(point1: point1, point2: point3)
-//        let perimeter = (a + b + c) / 2.0
-//        let r = sqrt((perimeter - a) * (perimeter - b) * (perimeter - c)/perimeter)
-//        print(r)
-//        let path = UIBezierPath()
-//        path.move(to: point1)
-//        path.addLine(to: point3)
-//        path.stroke()
-        
-//        let point1 = middle(point1: points[0], point2: points[1])
-//        let point2 = middle(point1: points[1], point2: points[2])
-//
-//
-//        print(getRadius(piAngle: step / 2, hypotenuse: CGFloat(distance)))
-//        let point3 = middle(point1: points[1], point2: points[2])
-//        let point4 = middle(point1: points[2], point2: points[3])
-//        let distance2 = sqrt(pow(Double(point3.x) - Double(point4.x), 2.0) + pow(Double(point3.y) - Double(point4.y), 2))
-//        print(getRadius(piAngle: step / 2, hypotenuse: CGFloat(distance2)))
-
-//        path.move(to: point3)
-//        path.addLine(to: point4)
+        let index = points.index(0, offsetBy: 4)
+        findMaxRounds(points: Array(points[..<index]))
         return points
+    }
+    
+    private func findMaxRounds(points: [CGPoint]) {
+        maxOuterRound = findRadiusBetween(vertice: points[2], point1: points[1], point2: points[3])
+        maxInnerRound = findRadiusBetween(vertice: points[1], point1: points[0], point2: points[2])
+    }
+    
+    private func findRadiusBetween(vertice: CGPoint, point1: CGPoint, point2: CGPoint) -> CGFloat {
+        let mid1 = middle(point1: point1, point2: vertice)
+        let mid2 = middle(point1: point2, point2: vertice)
+        let middlePoint = middle(point1: mid1, point2: mid2)
+        return CGFloat(length(point1: middlePoint, point2: mid1))
     }
     
     private func getRadius(piAngle: CGFloat, hypotenuse: CGFloat) -> CGFloat {
