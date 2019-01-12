@@ -46,7 +46,7 @@
 		CDDE210073E7F74BED4FE87D /* Pods-BUStarView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BUStarView_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BUStarView_Example/Pods-BUStarView_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		EC827555D61EB856BB42B969 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		EE0A0520BBA9AD541A34A4D1 /* Pods_BUStarView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BUStarView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F6E5F477433D44735CC6BDC2 /* BUStarView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BUStarView.podspec; path = ../BUStarView.podspec; sourceTree = "<group>"; };
+		F6E5F477433D44735CC6BDC2 /* BUStarView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BUStarView.podspec; path = ../BUStarView.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

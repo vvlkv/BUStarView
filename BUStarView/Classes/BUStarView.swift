@@ -34,19 +34,17 @@ public class BUStarView: UIView {
             setNeedsDisplay()
         }
     }
-    @IBInspectable public var outerRound:  CGFloat = 5.0 {
+    @IBInspectable public var outerRound:  CGFloat = 0 {
         didSet {
-            
-            if (outerRound > maxOuterRound) {
+            if (outerRound > 1.0) {
                 outerRound = oldValue
             }
             setNeedsDisplay()
         }
     }
-    @IBInspectable public var innerRound:  CGFloat = 5.0 {
+    @IBInspectable public var innerRound:  CGFloat = 0 {
         didSet {
-//            print(maxInnerRound, innerRound)
-            if (innerRound > maxInnerRound) {
+            if (innerRound > 1.0) {
                 innerRound = oldValue
             }
             setNeedsDisplay()
@@ -71,6 +69,13 @@ public class BUStarView: UIView {
     private var maxOuterRound: CGFloat = CGFloat.greatestFiniteMagnitude
     private var maxInnerRound: CGFloat = CGFloat.greatestFiniteMagnitude
     
+    private var realInnerRound: CGFloat {
+        return maxInnerRound * innerRound
+    }
+    private var realOuterRound: CGFloat {
+        return maxOuterRound * outerRound
+    }
+    
     private var radius: CGFloat {
         return min(frame.size.width/2, frame.size.height/2)
     }
@@ -90,7 +95,7 @@ public class BUStarView: UIView {
         for i in 0..<points.count {
             let firstPoint = points[i]
             let secondPoint: CGPoint
-            let radius = i % 2 == 0 ? outerRound : innerRound
+            let radius = i % 2 == 0 ? realOuterRound : realInnerRound
             if i + 1 >= points.count {
                 secondPoint = points[0]
             } else {
